@@ -1,4 +1,5 @@
 const form = document.querySelector('[data-js="form"]')
+const card = document.querySelector('[data-js="card"]')
 const dayNightImg = document.querySelector('[data-js="day-night"]')
 const weatherIcon = document.querySelector('[data-js="icon"]')
 const cityText = document.querySelector('[data-js="city"]')
@@ -36,6 +37,9 @@ insertInfosIntoDOM = async (cityKey, cityName) => {
    cityText.textContent = cityName
    weatherText.textContent = weather
    temp.textContent = `${temperature} C`
+   
+   //remove the class that hides the card on screen
+   card.classList.remove("hidden")
 }
 
 form.addEventListener("submit", async e => {
