@@ -19,23 +19,28 @@
       <!-- HEADER -->
       <form data-js="form" class="form">
          <h1>Weather Informations</h1>
-         <label for="inputCity">Insert the name city's name</label>
+         <label for="inputCity">Insert the city's name</label>
          <input data-js="inputSearch" class="input-city" type="text"
             name="inputCity" placeholder="Type enter to search" autocomplete="off"">
       </form>
       
       <!-- CARD -->
       <div data-js="card" class="weather-card hidden">
-         <img data-js="day-night" src="https://via.placeholder.com/374x374?text=day/night+image">
-         
-         <img data-js="icon" src="https://via.placeholder.com/100x100?text=icon">
-         <div data-js="city">City's name</div>
-         <div data-js="weather">weather climate</div>
-         <div data-js="temperature">temperature</div>
+         <div class="top-card">
+            <img data-js="day-night" src="https://via.placeholder.com/374x374?text=day/night+image">
+            <img data-js="icon" class="icon" src="https://via.placeholder.com/100x100?text=icon">
+         </div>
+
+         <div class="bottom-card">
+            <div data-js="city">City's name</div>
+            <div data-js="weather" class="weather-text">weather climate</div>
+            <div data-js="temperature" class="temperature-text">temperature</div>
+         </div>
       </div>
    </div>
 
    <!-- SCRIPTS JS -->
    <script src="./app.js"></script>
+
 </body>
 </html>

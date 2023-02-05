@@ -21,7 +21,7 @@ getCityInfos = async city => {
    return [cityKey, cityName]
 }
 
-insertInfosIntoDOM = async (cityKey, cityName) => {
+insertCityInfosIntoDOM = async (cityKey, cityName) => {
    // get informations about weather
    const responseFetchWeather = await fetch(getWeatherUrl(cityKey))
    const [responseJsonWeather] = await responseFetchWeather.json()
@@ -37,8 +37,8 @@ insertInfosIntoDOM = async (cityKey, cityName) => {
    cityText.textContent = cityName
    weatherText.textContent = weather
    temp.textContent = `${temperature} C`
-   
-   //remove the class that hides the card on screen
+
+   // remove the class that hides the card on screen
    card.classList.remove("hidden")
 }
 
@@ -48,7 +48,7 @@ form.addEventListener("submit", async e => {
    const city = e.target.inputCity.value
    const [cityKey, cityName] = await getCityInfos(city)
 
-   insertInfosIntoDOM(cityKey, cityName)
+   insertCityInfosIntoDOM(cityKey, cityName)
 
    e.target.reset()
 })
