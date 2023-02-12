@@ -13,7 +13,7 @@ const getCityURL = city => `http://dataservice.accuweather.com/locations/v1/citi
 const getWeatherUrl = cityKey => `http://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${APIKey}`
 
 
-getCityInfos = async city => {
+const getCityInfos = async city => {
    const responseFetchCity = await fetch(getCityURL(city))
    const [responseJsonCity] = await responseFetchCity.json()
    const cityKey = responseJsonCity.Key
@@ -21,7 +21,7 @@ getCityInfos = async city => {
    return [cityKey, cityName]
 }
 
-insertCityInfosIntoDOM = async (cityKey, cityName) => {
+const insertCityInfosIntoDOM = async (cityKey, cityName) => {
    // get informations about weather
    const responseFetchWeather = await fetch(getWeatherUrl(cityKey))
    const [responseJsonWeather] = await responseFetchWeather.json()
@@ -42,6 +42,15 @@ insertCityInfosIntoDOM = async (cityKey, cityName) => {
    card.classList.remove("hidden")
 }
 
+const checkCityInLocalStorage = () => {
+   if (localStorage.getItem("cityName")) {
+      const cityKey = localStorage.getItem("cityKey")
+      const cityName = localStorage.getItem("cityName")
+
+      insertCityInfosIntoDOM(cityKey, cityName)
+   }
+}
+
 form.addEventListener("submit", async e => {
    e.preventDefault()
 
@@ -49,6 +58,11 @@ form.addEventListener("submit", async e => {
    const [cityKey, cityName] = await getCityInfos(city)
 
    insertCityInfosIntoDOM(cityKey, cityName)
+   
+   localStorage.setItem("cityKey", cityKey)
+   localStorage.setItem("cityName", city)
 
    e.target.reset()
 })
+
+checkCityInLocalStorage()
